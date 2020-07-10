@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>write</title>
+</head>
+<body>
+	제목: {{ info.title }}
+	<br>
+	전체 페이지 수: {{ info.pageTotal }}
+	<br>
+
+	<form action="" method="post">
+		{{ record_form.as_p }}
+		{% csrf_token %}
+		<button type="submit" class="btn btn-primary">기록 저장</button>
+	</form>
+</body>
+</html>

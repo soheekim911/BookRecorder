@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>write</title>
+</head>
+<body>
+	<ul>
+	<li> 제목 | 총 페이지 수 | 완독률 </li>
+	{% for article, page in mylist %}
+	<li><a href="/record/{{article.id}}">{{ article.title }}</a> | {{ article.pageTotal }} 
+		| {{ page.pageRecord}}
+	</li> 
+	{% endfor %}
+	</ul>
+</body>
+</html>
