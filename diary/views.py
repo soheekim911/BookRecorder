@@ -36,7 +36,7 @@ def bookinfo(request, num="1"):
 
 # 	return render(request, 'record.html', {'form_record':form})
 
-def list(request):
+def booklist(request):
 	articleList = Article.objects.all()
 	recordList = Record.objects.values('pageRecord')
 	zipped_list = zip(articleList, recordList)
