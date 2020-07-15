@@ -1,8 +1,10 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>write</title>
+ <!DOCTYPE html>
+ {% load static %}
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>record</title>
+ 	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 </head>
 <body>
 	제목: {{ info.title }}
@@ -10,10 +12,16 @@
 	전체 페이지 수: {{ info.pageTotal }}
 	<br>
 
-	<form action="" method="post">
+	<form method="get">
+		<!-- 독서 기록: <input type="submit" name="record-submit"><br> -->
 		{{ record_form.as_p }}
-		{% csrf_token %}
-		<button type="submit" class="btn btn-primary">기록 저장</button>
-	</form>
+		<button type="submit" class="btn btn-primary" name="submit-record">기록 저장</button>
+	</form> <br><br>
+
+	<li> 날짜 | 읽은 페이지 수 | 누적 페이지 수 </li>
+	{% for record in record_form %}
+	<li>{{ record.rdate|date:"Y M d D" }} | {{ record.pageRecord }} 
+	</li> 
+	{% endfor %}
 </body>
 </html>

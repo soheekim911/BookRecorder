@@ -7,8 +7,8 @@
  	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 </head>
 <body>
-	<form action="" method="post">
-		{{ form_write.as_p }} <!-- views.py의 form을 받아서 p 태그 형태로 보여주겠다 -->
+	<form action="" method="post"> <!-- action이 비어있기 때문에, input 데이터가 현재 페이지 URL로 다시 전달된다 -->
+		{{ form_write.as_p }} <!-- views.py의 form을 받아서 p(paragraph) 태그 형태로 보여주겠다 -->
 		{% csrf_token %}
 		<button type="submit" class="btn btn-primary">책! 저!장!</button>
 	</form>
