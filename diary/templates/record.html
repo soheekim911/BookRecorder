@@ -12,16 +12,18 @@
 	전체 페이지 수: {{ info.pageTotal }}
 	<br>
 
-	<form method="get">
+	<form method="post">
 		<!-- 독서 기록: <input type="submit" name="record-submit"><br> -->
+		{% csrf_token %}
 		{{ record_form.as_p }}
 		<button type="submit" class="btn btn-primary" name="submit-record">기록 저장</button>
 	</form> <br><br>
+	<h2>{{ text }}</h2>
 
-	<li> 날짜 | 읽은 페이지 수 | 누적 페이지 수 </li>
+	<!-- <li> 날짜 | 읽은 페이지 수 | 누적 페이지 수 </li>
 	{% for record in record_form %}
 	<li>{{ record.rdate|date:"Y M d D" }} | {{ record.pageRecord }} 
 	</li> 
-	{% endfor %}
+	{% endfor %} -->
 </body>
 </html>

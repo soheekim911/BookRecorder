@@ -20,6 +20,6 @@ from diary.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('write/', write, name='write'), # 가운데 write가 함수명, name은 내부적으로 사용하는 이름
-    re_path(r'^record/(?P<num>[0-9]+)/', bookinfo), 
+    re_path(r'^record/(?P<num>[0-9]+)/', RecordView.as_view()), 
     path('list/', booklist, name='list'),
 ]

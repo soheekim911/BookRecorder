@@ -1,3 +1,4 @@
+from django.views.generic import TemplateView
 from django.shortcuts import render
 from diary.forms import *
 
@@ -14,43 +15,60 @@ def write(request):
 	# GET 요청(메소드)이면 기본 폼 생성
 	else:
 		form = WriteForm()
-	
-	return render(request, 'write.html', {'form_write':form}) # request를 받아서 write.html파일로 보내겠다
+	# request를 받아서 write.html파일로 보내겠다
+	# dictionary 형태로 변수를 만들어준다. 
+	return render(request, 'write.html', {'form_write':form}) 
 
-def bookinfo(request, num="1"):
-	info = Article.objects.get(id=num)
 
-	# if request.method == "POST":
-	# 	record_form = RecordForm(request.POST)
-	# 	if record_form.is_valid():
-	# 		record_form.save()
+class RecordView(TemplateView):
+	template_name = 'record.html'
 
-	# else:
-	# 	record_form = RecordForm()
+	def bookinfo(self, request, num="1"):
+		# Article 폼으로 받은 데이터를 id에 따라 가져옴
+		info = Article.objects.get(id=num)
 
-	# recordList = Record.objects.get(id=num)
-	
-	if request.GET.get('submit-record'):
-		submit = request.GET.get('submit-record')
-		questions = Queries.objects.filter(query__icontains=submit)
+		record = RecordFrom()
+		# if request.method == 'POST':
+		# 	record = RecordForm(request.POST)
 
-		query = Queries.object.create(query=submit)
-		query.save()
+		return render(request, self.tempate_name, {
+			'info':info,
+			'record_form': record,
+			})
 
-	return render(request, 'record.html', {
-		'info':info,
-		'record_form': questions,
-		})
+	def post(self, request, num="1"):
+		# if request.method == 'POST':
+		record = RecordForm(request.POST)
+		if record.is_valid():
+			text = record.cleaned_data['post']
+			record = RecordForm()
 
-# def record(request, num="1"):
-# 	if request.method == "POST":
-# 		form = RecordForm(request.POST)
-# 		if form.is_valid():
-# 			form.save()
-# 	else:
-# 		form = RecordForm()
+		return render(request, self.template_name, {
+			'record_form': record,
+			'text': text,
+			})
 
-# 	return render(request, 'record.html', {'form_record':form})
+		# if request.method == "POST":
+		# 	record_form = RecordForm(request.POST)
+		# 	if record_form.is_valid():
+		# 		record_form.save()
+
+		# else:
+		# 	record_form = RecordForm()
+
+		# recordList = Record.objects.get(id=num)
+
+		
+
+	# def record(request, num="1"):
+	# 	if request.method == "POST":
+	# 		form = RecordForm(request.POST)
+	# 		if form.is_valid():
+	# 			form.save()
+	# 	else:
+	# 		form = RecordForm()
+
+	# 	return render(request, 'record.html', {'form_record':form})
 
 def booklist(request, num="1"):
 	articleList = Article.objects.all()
