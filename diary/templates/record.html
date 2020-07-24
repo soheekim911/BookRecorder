@@ -14,11 +14,19 @@
 
 	<form method="post">
 		<!-- 독서 기록: <input type="submit" name="record-submit"><br> -->
-		{% csrf_token %}
 		{{ record_form.as_p }}
+		{% csrf_token %}
 		<button type="submit" class="btn btn-primary" name="submit-record">기록 저장</button>
 	</form> <br><br>
-	<h2>{{ text }}</h2>
+
+	<script>
+		document.querySelector('input').addEventListener('click', function(event){
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', )
+		})
+	</script>
+	<h2>{{ text }}</h2><br>
+
 
 	<!-- <li> 날짜 | 읽은 페이지 수 | 누적 페이지 수 </li>
 	{% for record in record_form %}

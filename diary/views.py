@@ -27,13 +27,13 @@ class RecordView(TemplateView):
 		# Article 폼으로 받은 데이터를 id에 따라 가져옴
 		info = Article.objects.get(id=num)
 
-		record = RecordFrom()
+		# record = RecordForm()
 		# if request.method == 'POST':
 		# 	record = RecordForm(request.POST)
 
 		return render(request, self.tempate_name, {
 			'info':info,
-			'record_form': record,
+			# 'record_form': record,
 			})
 
 	def post(self, request, num="1"):
@@ -41,7 +41,6 @@ class RecordView(TemplateView):
 		record = RecordForm(request.POST)
 		if record.is_valid():
 			text = record.cleaned_data['post']
-			record = RecordForm()
 
 		return render(request, self.template_name, {
 			'record_form': record,
