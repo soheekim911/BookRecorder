@@ -19,7 +19,8 @@ from diary.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('list/', booklist, name='list'), # 이게 가장 기본 페이지였으면 좋겠음.
     path('write/', write, name='write'), # 가운데 write가 함수명, name은 내부적으로 사용하는 이름
-    path('record/<int:num>/', RecordView.as_view()), 
-    path('list/', booklist, name='list'),
+	path('record/<int:num>/', RecordView.as_view()), 
+    
 ]

@@ -1,16 +1,12 @@
- <!DOCTYPE html>
- {% load static %}
- <html lang="en">
- <head>
- 	<meta charset="UTF-8">
- 	<title>write</title>
- 	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-</head>
-<body>
-	<form action="" method="post"> <!-- action이 비어있기 때문에, input 데이터가 현재 페이지 URL로 다시 전달된다 -->
-		{{ form_write.as_p }} <!-- views.py의 form을 받아서 p(paragraph) 태그 형태로 보여주겠다 -->
-		{% csrf_token %}
-		<button type="submit" class="btn btn-primary">책! 저!장!</button>
-	</form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>New Book</h2>
+<form action="" method="post"> <!-- action이 비어있기 때문에, input 데이터가 현재 페이지 URL로 다시 전달된다 -->
+	{{ form_write.as_p }} <!-- views.py의 form을 받아서 p(paragraph) 태그 형태로 보여주겠다 -->
+	{% csrf_token %}
+	<button type="submit" class="btn btn-primary">책 저장</button>
+</form>
+
+{% endblock %}

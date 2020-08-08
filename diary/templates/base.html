@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+	<head>
+		<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+		<title> Book Progress</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap.com/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+		<link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="page-header">
+			<a href="{% url 'write' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+			<h1><a href="{% url 'list' %}">How far have you read the book?</a></h1>
+		</div>
+
+		<div class="content-container">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+	</body>
+</html>

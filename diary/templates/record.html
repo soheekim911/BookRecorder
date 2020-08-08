@@ -1,37 +1,39 @@
- <!DOCTYPE html>
- {% load static %}
- <html lang="en">
- <head>
- 	<meta charset="UTF-8">
- 	<title>record</title>
- 	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 	제목: {{ info.title }}
 	<br>
 	전체 페이지 수: {{ info.pageTotal }}
 	<br>
 
 	<form method="post">
-		<!-- 독서 기록: <input type="submit" name="record-submit"><br> -->
 		{{ record_form.as_p }}
 		{% csrf_token %}
-		<button type="submit" class="btn btn-primary" name="submit-record">기록 저장</button>
+		<button type="submit" id="submit-value" class="btn btn-primary" name="submit-record">기록 저장</button>
 	</form> <br><br>
 
-	<script>
-		document.querySelector('input').addEventListener('click', function(event){
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', )
+	<!-- <script> // $(document).ready() allows us to execute a function when the document is fully loaded.
+		// document.querySelector('input').addEventListener('click', function(event){
+		// 	var xhr = new XMLHttpRequest();
+		// 	xhr.open('GET', )
+		// })
+		var subValue = $("#submit-value").val();
+		var subDate = $("").val();
+
+		$.ajax({
+			url: '/record/<int:num>',
+			data: {
+				'submitPage':subValue,
+				'rdate':
+		}
 		})
-	</script>
-	<h2>{{ text }}</h2><br>
+	</script> -->
 
+	<!-- <h2>{{ text }}</h2><br> -->
 
-	<!-- <li> 날짜 | 읽은 페이지 수 | 누적 페이지 수 </li>
-	{% for record in record_form %}
-	<li>{{ record.rdate|date:"Y M d D" }} | {{ record.pageRecord }} 
-	</li> 
-	{% endfor %} -->
-</body>
-</html>
+	<li> 날짜 | 페이지 </li>
+	{% for record in recordList %}
+	<li> record.rdate | record</li> 
+	{% endfor %}
+
+{% endblock %}

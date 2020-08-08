@@ -1,19 +1,12 @@
- <!DOCTYPE html>
- {% load static %}
- <html lang="en">
- <head>
- 	<meta charset="UTF-8">
- 	<title>list</title>
- 	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 	<ul>
-	<li> 제목 | 총 페이지 수 | 완독률 </li>
-	{% for article, page in mylist %}
+	<h4>제목 | 총 페이지 수 | 완독률</h2>
+	{% for article in mylist %}
 	<li><a href="/record/{{article.id}}">{{ article.title }}</a> | {{ article.pageTotal }} 
-		| {{ page.pageRecord}}
+		| 누적 페이지인데 일단 비워둠<!-- {{ page.pageRecord}} -->
 	</li> 
 	{% endfor %}
 	</ul>
-</body>
-</html>
+{% endblock %}
