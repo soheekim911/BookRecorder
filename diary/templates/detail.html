@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 	<div>
+		<p>제목: {{ post.title }}<br>
+		전체 페이지 수: {{ post.pageTotal }}</p>
+	</div>
+
+	<!-- <div>
+		<form method="post">
+			{{ record_form.as_p }}
+			{% csrf_token %}
+			<button type="submit" id="submit-value" class="btn btn-primary" name="submit-record">기록 저장</button>
+		</form> 
+	</div> -->
+
+	<a class="btn btn-default" href="{% url 'add_record_to_book' pk=post.pk %}">새로운 독서 기록</a><br><br>
+	<!-- 여기서부터 RecordForm으로 받아온 독서이력 show -->
+	<div class="record">
+	<h4>읽은 날짜 | 몇 페이지 읽었지 | 짧은 감상</h4>
+		{% for record in post.records.all %}
+			{{ record.rdate }} | {{ record.pageRecord }} | {{ record.text|linebreaks }}
+	
+		{% empty %}
+			<p> 아직 이력이 없습니다.</p>
+		{% endfor %}
+	</div>
+
+	<!-- <script> // $(document).ready() allows us to execute a function when the document is fully loaded.
+		// document.querySelector('input').addEventListener('click', function(event){
+		// 	var xhr = new XMLHttpRequest();
+		// 	xhr.open('GET', )
+		// })
+		var subValue = $("#submit-value").val();
+		var subDate = $("").val();
+
+		$.ajax({
+			url: '/record/<int:num>',
+			data: {
+				'submitPage':subValue,
+				'rdate':
+		}
+		})
+	</script> -->
+
+	<!-- <h2>{{ text }}</h2><br> -->
+
+<!-- 	<li> 날짜 | 페이지 </li>
+	{% for record in recordList %}
+	<li> record.rdate | record</li> 
+	{% endfor %}
+ -->
+{% endblock %}

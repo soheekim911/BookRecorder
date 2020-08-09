@@ -14,13 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
-from diary.views import *
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('list/', booklist, name='list'), # 이게 가장 기본 페이지였으면 좋겠음.
-    path('write/', write, name='write'), # 가운데 write가 함수명, name은 내부적으로 사용하는 이름
-	path('record/<int:num>/', RecordView.as_view()), 
-    
+    path('', include('diary.urls')),
 ]

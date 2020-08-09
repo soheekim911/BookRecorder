@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>독서 기록</h1>
+	<form method="POST" class="record-form">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="save btn btn-default">저장</button>
+	</form>
+{% endblock %}

@@ -11,8 +11,9 @@ class Article(models.Model):
 		return self.title
 	
 class Record(models.Model):
+	article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='records')
 	pageRecord = models.PositiveIntegerField(default=0)
-	rdate = models.DateTimeField(auto_now_add=True)
+	rdate = models.DateTimeField(default=timezone.now)
 	text = models.TextField(default="오늘 읽은 부분에 대한 감상을 입력하세요.")
 
 	def __str__(self):

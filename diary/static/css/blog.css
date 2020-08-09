@@ -1,4 +1,10 @@
 .page-header {
 	color: #1C6ACF;
 	font-family: 'Pangolin';
+	margin-left: 30px;
+	padding: 20px 20px 20px 20px;
+}
+
+.content-container {
+	margin-left: 30px;
 }

@@ -2,10 +2,10 @@
 
 {% block content %}
 	<ul>
-	<h4>제목 | 총 페이지 수 | 완독률</h2>
+	<h4>제목 | 총 페이지 수 | 완독률</h4>
 	{% for article in mylist %}
-	<li><a href="/record/{{article.id}}">{{ article.title }}</a> | {{ article.pageTotal }} 
-		| 누적 페이지인데 일단 비워둠<!-- {{ page.pageRecord}} -->
+	<li><a href="/detail/{{article.pk}}">{{ article.title }}</a> | {{ article.pageTotal }} 
+		| <!-- {{ page.pageRecord}} -->
 	</li> 
 	{% endfor %}
 	</ul>
